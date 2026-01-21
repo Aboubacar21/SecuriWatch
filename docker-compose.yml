@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Base de données PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: securiwatch-db
+    environment:
+      POSTGRES_USER: securiwatch
+      POSTGRES_PASSWORD: securiwatch_dev_2025
+      POSTGRES_DB: securiwatch
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - securiwatch-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U securiwatch"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis pour le cache temps réel
+  redis:
+    image: redis:7-alpine
+    container_name: securiwatch-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - securiwatch-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  postgres_data:
+
+networks:
+  securiwatch-network:
+    driver: bridge
