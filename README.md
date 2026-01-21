@@ -1,19 +1,19 @@
-# 🛡️ SecuriWatch - Plateforme d'Analyse de Sécurité Réseau
+# SecuriWatch - Plateforme d'Analyse de Sécurité Réseau
 
 Système de détection d'anomalies et d'analyse de sécurité réseau avec Machine Learning.
 
-## 🎯 Fonctionnalités
+## Fonctionnalités
 
-- ✅ Collecte automatique de logs (SSH, authentification, système)
-- ✅ Détection d'événements de sécurité
-- ✅ Scoring de risque intelligent (0-10)
-- ✅ Stockage dans PostgreSQL
-- ✅ Analyse et statistiques en temps réel
-- 🚧 Machine Learning pour détection d'anomalies (à venir)
-- 🚧 Dashboard web interactif (à venir)
-- 🚧 Alertes automatiques (à venir)
+- Collecte automatique de logs (SSH, authentification, système)
+- Détection d'événements de sécurité
+- Scoring de risque intelligent (0-10)
+- Stockage dans PostgreSQL
+- Analyse et statistiques en temps réel
+- Machine Learning pour détection d'anomalies (à venir)
+- Dashboard web interactif (à venir)
+- Alertes automatiques (à venir)
 
-## 🛠️ Stack Technique
+## Stack Technique
 
 **Backend:**
 - Python 3.10+
@@ -27,7 +27,7 @@ Système de détection d'anomalies et d'analyse de sécurité réseau avec Machi
 - Docker & Docker Compose
 - Redis
 
-## 📊 Base de Données
+## Base de Données
 
 7 tables créées :
 - `logs` - Événements de sécurité collectés
@@ -38,7 +38,7 @@ Système de détection d'anomalies et d'analyse de sécurité réseau avec Machi
 - `daily_stats` - Statistiques quotidiennes
 - `incident_logs` - Liaison logs/incidents
 
-## 🚀 Installation
+## Installation
 
 ### Prérequis
 - Python 3.10+
@@ -65,7 +65,7 @@ docker-compose up -d
 python backend/app/collectors/auth_collector_db.py
 ```
 
-## 📈 Utilisation
+## Utilisation
 
 ### Collecter les logs
 ```bash
@@ -89,7 +89,7 @@ SELECT * FROM logs WHERE risk_score >= 7;
 SELECT event_type, COUNT(*) FROM logs GROUP BY event_type;
 ```
 
-## 📁 Structure du Projet
+## Structure du Projet
 ```
 securiwatch/
 ├── backend/
@@ -106,14 +106,14 @@ securiwatch/
 └── README.md
 ```
 
-## 🎓 Développé par
+## Développé par
 
 **Aboubacar Sidiki Yattara**
 - Email: sidikiyattara07@gmail.com
 - LinkedIn: [aboubacar-sidiki-yattara](https://www.linkedin.com/in/aboubacar-sidiki-yattara943456239/)
 - Étudiant en Master 1 Informatique - Université d'Artois
 
-## 📝 Roadmap
+## Roadmap
 
 - [x] Collecteur de logs SSH
 - [x] Base de données PostgreSQL
@@ -124,6 +124,6 @@ securiwatch/
 - [ ] Système d'alertes
 - [ ] Rapports PDF automatiques
 
-## 📄 Licence
+## Licence
 
 MIT License
