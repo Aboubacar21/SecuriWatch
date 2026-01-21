@@ -110,7 +110,7 @@ securiwatch/
 
 **Aboubacar Sidiki Yattara**
 - Email: sidikiyattara07@gmail.com
-- LinkedIn: [aboubacar-sidiki-yattara](https://www.linkedin.com/in/aboubacar-sidiki-yattara943456239/)
+- LinkedIn: [aboubacar-sidiki-yattara](https://www.linkedin.com/in/aboubacar-sidiki-yattara-943456239/)
 - Étudiant en Master 1 Informatique - Université d'Artois
 
 ## Roadmap
