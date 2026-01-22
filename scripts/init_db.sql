@@ -137,7 +137,7 @@ VALUES (
 -- Afficher un message de succès
 DO $$
 BEGIN
-    RAISE NOTICE '✅ Base de données SecuriWatch initialisée avec succès!';
-    RAISE NOTICE '📊 Tables créées: users, logs, incidents, alerts, detection_rules';
-    RAISE NOTICE '👤 Utilisateur admin créé: admin@securiwatch.local / admin123';
+    RAISE NOTICE 'Base de données SecuriWatch initialisée avec succès!';
+    RAISE NOTICE 'Tables créées: users, logs, incidents, alerts, detection_rules';
+    RAISE NOTICE 'Utilisateur admin créé: admin@securiwatch.local / admin123';
 END $$;

@@ -27,7 +27,7 @@ class AuthLogCollector:
             )
             return result.stdout.strip().split('\n')
         except subprocess.CalledProcessError as e:
-            print(f"❌ Erreur lecture logs: {e}")
+            print(f"Erreur lecture logs: {e}")
             return []
     
     def parse_log_line(self, line: str) -> Dict:
@@ -158,7 +158,7 @@ class AuthLogCollector:
     def display_summary(self, logs: List[Dict]):
         """Affiche un résumé des logs collectés"""
         
-        print(f"📊 RÉSUMÉ DE LA COLLECTE")
+        print(f"RÉSUMÉ DE LA COLLECTE")
         print("=" * 60)
         print(f"Total d'événements: {len(logs)}")
         
@@ -177,10 +177,10 @@ class AuthLogCollector:
         for event_type, count in sorted(event_counts.items(), key=lambda x: x[1], reverse=True):
             print(f"   {event_type}: {count}")
         
-        print(f"\n⚠️  Événements à risque (score ≥ 5): {len(risk_events)}")
+        print(f"\nÉvénements à risque (score ≥ 5): {len(risk_events)}")
         
         if risk_events:
-            print("\n🚨 TOP 5 ÉVÉNEMENTS À RISQUE:")
+            print("\nTOP 5 ÉVÉNEMENTS À RISQUE:")
             for log in sorted(risk_events, key=lambda x: x['risk_score'], reverse=True)[:5]:
                 print(f"   [{log['timestamp']}] Risk={log['risk_score']}/10")
                 print(f"   Type: {log['event_type']} | User: {log['user']}")
@@ -191,7 +191,7 @@ class AuthLogCollector:
 def main():
     """Fonction principale de test"""
     
-    print("🛡️  SECURIWATCH - Collecteur de Logs d'Authentification")
+    print("SECURIWATCH - Collecteur de Logs d'Authentification")
     print("=" * 60)
     print()
     
@@ -210,10 +210,10 @@ def main():
         with open(output_file, 'w') as f:
             json.dump(logs, f, indent=2, ensure_ascii=False)
         
-        print(f"\n💾 Logs sauvegardés dans: {output_file}")
-        print(f"📁 Vous pouvez ouvrir ce fichier pour voir les données structurées")
+        print(f"\nLogs sauvegardés dans: {output_file}")
+        print(f"Vous pouvez ouvrir ce fichier pour voir les données structurées")
     else:
-        print("❌ Aucun log collecté")
+        print("Aucun log collecté")
 
 
 if __name__ == "__main__":

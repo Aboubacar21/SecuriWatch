@@ -44,10 +44,10 @@ def test_connection():
         from sqlalchemy import text
         with engine.connect() as conn:
             result = conn.execute(text("SELECT 1"))
-            print("✅ Connexion à PostgreSQL réussie!")
+            print("Connexion à PostgreSQL réussie!")
             return True
     except Exception as e:
-        print(f"❌ Erreur de connexion: {e}")
+        print(f"Erreur de connexion: {e}")
         return False
 
 

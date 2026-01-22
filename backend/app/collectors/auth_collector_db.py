@@ -35,7 +35,7 @@ class AuthLogCollectorDB:
             )
             return result.stdout.strip().split('\n')
         except subprocess.CalledProcessError as e:
-            print(f"❌ Erreur lecture logs: {e}")
+            print(f"Erreur lecture logs: {e}")
             return []
     
     def parse_log_line(self, line: str) -> Dict:
@@ -152,22 +152,22 @@ class AuthLogCollectorDB:
                 db.add(log)
                 saved_count += 1
             except Exception as e:
-                print(f"⚠️  Erreur sauvegarde log: {e}")
+                print(f"Erreur sauvegarde log: {e}")
                 continue
         
         try:
             db.commit()
-            print(f"✅ {saved_count} logs sauvegardés en base de données")
+            print(f"{saved_count} logs sauvegardés en base de données")
         except Exception as e:
             db.rollback()
-            print(f"❌ Erreur commit: {e}")
+            print(f"Erreur commit: {e}")
             saved_count = 0
         
         return saved_count
     
     def collect_and_save(self, lines: int = 50):
         """Collecte les logs et les sauvegarde en base"""
-        print(f"🔍 Collecte des {lines} dernières lignes de {self.log_path}...\n")
+        print(f"Collecte des {lines} dernières lignes de {self.log_path}...\n")
         
         # Lire les logs
         raw_logs = self.read_logs(lines)
@@ -179,7 +179,7 @@ class AuthLogCollectorDB:
                 if parsed:
                     parsed_logs.append(parsed)
         
-        print(f"📊 {len(parsed_logs)} logs parsés\n")
+        print(f"{len(parsed_logs)} logs parsés\n")
         
         # Sauvegarder en base
         db = SessionLocal()
@@ -197,7 +197,7 @@ class AuthLogCollectorDB:
         from sqlalchemy import func
         
         print("\n" + "="*60)
-        print("📊 STATISTIQUES DE LA BASE DE DONNÉES")
+        print("STATISTIQUES DE LA BASE DE DONNÉES")
         print("="*60)
         
         # Total de logs
@@ -216,7 +216,7 @@ class AuthLogCollectorDB:
         
         # Événements à haut risque
         high_risk = db.query(Log).filter(Log.risk_score >= 5).count()
-        print(f"\n⚠️  Événements à risque (score ≥ 5): {high_risk}")
+        print(f"\nÉvénements à risque (score ≥ 5): {high_risk}")
         
         # Top 5 des événements les plus risqués
         top_risks = db.query(Log).filter(Log.risk_score >= 5).order_by(
@@ -224,7 +224,7 @@ class AuthLogCollectorDB:
         ).limit(5).all()
         
         if top_risks:
-            print("\n🚨 TOP 5 ÉVÉNEMENTS À RISQUE:")
+            print("\nTOP 5 ÉVÉNEMENTS À RISQUE:")
             for log in top_risks:
                 print(f"   [{log.timestamp}] Risk={log.risk_score}/10")
                 print(f"   Type: {log.event_type} | User: {log.user_name}")
@@ -235,15 +235,15 @@ class AuthLogCollectorDB:
 def main():
     """Fonction principale"""
     
-    print("🛡️  SECURIWATCH - Collecteur avec Base de Données PostgreSQL")
+    print("SECURIWATCH - Collecteur avec Base de Données PostgreSQL")
     print("="*60)
     print()
     
     collector = AuthLogCollectorDB()
     collector.collect_and_save(lines=100)
     
-    print("\n✅ Collecte terminée!")
-    print("💡 Vous pouvez maintenant interroger la base avec SQL")
+    print("\nCollecte terminée!")
+    print("Vous pouvez maintenant interroger la base avec SQL")
 
 
 if __name__ == "__main__":
